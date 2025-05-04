@@ -1,5 +1,5 @@
 # Exercice 7:
-Redefinition de la methode equals dans la classe Rectangle :
+## Redefinition de la methode equals dans la classe Rectangle :
 ```java
 @Override
 public boolean equals(Object obj) {
@@ -9,7 +9,7 @@ public boolean equals(Object obj) {
     return sameAs(other);
 }
 ```
-Redefinition de la methode equals dans la classe SlantedRectangle:
+## Redefinition de la methode equals dans la classe SlantedRectangle:
 ```java
 @Override
 public boolean equals(Object obj) {
