@@ -50,7 +50,7 @@ public class Main {
         System.out.println("Surface via polymorphisme: " + polyRect.surface());
 
 
-        // Ancien code qui doit continuer à fonctionner
+        //  Nouveau test
         Point p = new Point(1, 2);
         Rectangle r = new Rectangle(p, 2, 3);
         Rectangle t = new SlantedRectangle(p, 2, 3);
