@@ -1,43 +1,64 @@
-class SlantedRectangle extends Rectangle {
+public class SlantedRectangle extends Rectangle {
     private double angle; // angle en radians
 
-    public SlantedRectangle(Point topLeft, double width, double height) {
-        this(topLeft, width, height, 0); // angle 0 par défaut
+    public SlantedRectangle(Point bottomLeft, double width, double height) {
+        this(bottomLeft, width, height, 0);
     }
 
-    public SlantedRectangle(Point topLeft, double width, double height, double angle) {
-        super(topLeft, width, height);
+    public SlantedRectangle(Point bottomLeft, double width, double height, double angle) {
+        super(bottomLeft, width, height);
         this.angle = angle;
     }
 
-    public double getAngle() { return angle; }
-    public void setAngle(double angle) { this.angle = angle; }
-
     public void rotate(double deltaAngle) {
         this.angle += deltaAngle;
-        // Normaliser l'angle entre 0 et 2π
+        // Normalisation de l'angle entre 0 et 2π
         this.angle = this.angle % (2 * Math.PI);
-        if (this.angle < 0) {
-            this.angle += 2 * Math.PI;
-        }
+        if (this.angle < 0) this.angle += 2 * Math.PI;
     }
 
     @Override
     public boolean contains(Point p) {
-        // Transformation inverse pour ramener le point dans le repère du rectangle
-        double x = p.getX() - topLeft.getX();
-        double y = p.getY() - topLeft.getY();
+        // Translation du point dans le repère du rectangle
+        double translatedX = p.getX() - bottomLeft.getX();
+        double translatedY = p.getY() - bottomLeft.getY();
 
         // Rotation inverse
         double cos = Math.cos(-angle);
         double sin = Math.sin(-angle);
-        double xRot = x * cos - y * sin;
-        double yRot = x * sin + y * cos;
+        double rotatedX = translatedX * cos - translatedY * sin;
+        double rotatedY = translatedX * sin + translatedY * cos;
 
         // Vérification dans le repère non incliné
-        return xRot >= 0 && xRot <= width && yRot >= 0 && yRot <= height;
+        return rotatedX >= 0 && rotatedX <= width &&
+                rotatedY >= 0 && rotatedY <= height;
     }
 
-    // La surface ne change pas avec la rotation
-    // Pas besoin de redéfinir surface()
+    @Override
+    protected Point[] getCorners() {
+        Point[] corners = super.getCorners();
+        Point center = new Point(
+                bottomLeft.getX() + width/2,
+                bottomLeft.getY() + height/2
+        );
+
+        // Rotation de chaque coin autour du centre
+        for (int i = 0; i < corners.length; i++) {
+            corners[i] = rotatePoint(corners[i], center, angle);
+        }
+        return corners;
+    }
+
+    private Point rotatePoint(Point p, Point center, double angle) {
+        double x = p.getX() - center.getX();
+        double y = p.getY() - center.getY();
+
+        double cos = Math.cos(angle);
+        double sin = Math.sin(angle);
+
+        double newX = x * cos - y * sin + center.getX();
+        double newY = x * sin + y * cos + center.getY();
+
+        return new Point(newX, newY);
+    }
 }
