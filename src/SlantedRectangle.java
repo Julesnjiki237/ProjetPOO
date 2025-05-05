@@ -61,4 +61,9 @@ public class SlantedRectangle extends Rectangle {
 
         return new Point(newX, newY);
     }
+// oui c'est nécessaire de le définir  dans le slantedRectangle pour afficher l’angle d’inclinaison
+    @Override
+    public String toString() {
+        return super.toString() + ", angle=" + angle;
+    }
 }

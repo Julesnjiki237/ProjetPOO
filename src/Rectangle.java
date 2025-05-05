@@ -129,4 +129,5 @@ public class Rectangle {
         return "Rectangle[(" + bottomLeft.getX() + "," + bottomLeft.getY() +
                 "), w=" + width + ", h=" + height + "]";
     }
+
 }
