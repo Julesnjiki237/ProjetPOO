@@ -61,4 +61,12 @@ public class SlantedRectangle extends Rectangle {
 
         return new Point(newX, newY);
     }
+    // Redéfinition de la méthode equals
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) return false;//verifie l'egalité via la classe rectangle parente
+        if (!(obj instanceof SlantedRectangle)) return false;//verifie si c'est un slantedRectangle
+        SlantedRectangle other = (SlantedRectangle) obj;//convertit l'objet en slantedRectangle
+        return this.angle == other.angle;//compare les angles
+    }
 }

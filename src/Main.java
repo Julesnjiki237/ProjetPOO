@@ -64,5 +64,13 @@ public class Main {
         System.out.println(s.surface());
         s.rotate(2);
         System.out.println(s.contains(p));
+        //Test de la méthode equals
+        Point p3=new Point(1, 1);
+        Rectangle r5=new Rectangle(p3, 10, 5);
+        Rectangle r6=new Rectangle(p3, 10, 5);
+        SlantedRectangle sr2=new SlantedRectangle(p3, 10, 5, Math.PI/4); 
+        System.out.println(r5.equals(r6));
+        System.out.println(r5.equals(sr2));
+        System.out.println(sr2.equals(r5));
     }
 }
