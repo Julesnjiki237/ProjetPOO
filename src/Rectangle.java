@@ -71,7 +71,14 @@ public class Rectangle {
                 Double.compare(width, other.width) == 0 &&
                 Double.compare(height, other.height) == 0;
     }
-
+    //Redefinition de la methode equals
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;// verifie si c'est le meme objet en memoire 
+        if (!(obj instanceof Rectangle)) return false;//verifie si l'objet est null ou pas un rectangle
+        Rectangle other = (Rectangle) obj;//convertit l'objet en rectangle
+        return sameAs(other); // compare les attributs un par un
+    }
     // Rectangle englobant
     public static Rectangle hull(Rectangle[] rectangles) {
         if (rectangles == null || rectangles.length == 0) {

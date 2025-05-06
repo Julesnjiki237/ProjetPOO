@@ -61,4 +61,10 @@ public class SlantedRectangle extends Rectangle {
 
         return new Point(newX, newY);
     }
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) return false;
+        if (!(obj instanceof SlantedRectangle)) return false;
+        SlantedRectangle other = (SlantedRectangle) obj;
+        return this.angle == other.angle;
+    }
 }

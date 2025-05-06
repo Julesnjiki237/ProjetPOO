@@ -1,6 +1,7 @@
 # Exercice 7:
 ## Redefinition de la methode equals dans la classe Rectangle :
 ```java
+
 @Override
 public boolean equals(Object obj) {
     if (this == obj) return true;
