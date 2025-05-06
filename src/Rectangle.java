@@ -71,7 +71,7 @@ public class Rectangle {
                 Double.compare(width, other.width) == 0 &&
                 Double.compare(height, other.height) == 0;
     }
-    //Redefinition de la methode equals
+    //Redéfinition de la méthode equals
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;// verifie si c'est le meme objet en memoire 
