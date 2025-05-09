@@ -80,4 +80,27 @@ public class SlantedRectangle extends Rectangle {
         return super.equals(other) && 
             Double.compare(this.angle, other.angle) == 0; // Vérifie si les angles sont égaux
     }
+
+    @Override
+    public boolean contains(Rectangle r) {
+        // Vérifie si le rectangle est un SlantedRectangle
+        if (r instanceof SlantedRectangle) {
+            return containsSlanted((SlantedRectangle) r);
+        }
+
+        // Pour un rectangle non incliné, on utilise la méthode de base
+        return super.contains(r);
+    }
+
+    // Méthode pour vérifier si un SlantedRectangle est contenu
+    private boolean containsSlanted(SlantedRectangle r) {
+        Point[] corners = r.getCorners(); // Obtenir les coins du rectangle donné
+
+        for (Point corner : corners) {
+            if (!contains(corner)) {
+                return false; // Si un coin n'est pas contenu, retourner false
+            }
+        }
+        return true; // Tous les coins sont contenus
+    }
 }
