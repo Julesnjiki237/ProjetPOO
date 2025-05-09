@@ -9,6 +9,16 @@ public class SlantedRectangle extends Rectangle {
         super(bottomLeft, width, height);
         this.angle = angle;
     }
+    public SlantedRectangle(Point p1, Point p2, double angle) {
+        super(p1, p2); // Appel au constructeur de Rectangle
+        this.angle = angle;
+    }
+
+    // Constructeur avec 4 heights et un angle
+    public SlantedRectangle(double x, double y, double width, double height, double angle) {
+        super(x, y, width, height); // Appel au constructeur de Rectangle
+        this.angle = angle;
+    }
 
     public void rotate(double deltaAngle) {
         this.angle += deltaAngle;
