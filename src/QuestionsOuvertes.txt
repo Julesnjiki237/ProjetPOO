@@ -1,0 +1,108 @@
+Exercice 3
+
+SlantedRectangle hérite de toutes les méthodes de Rectangle
+
+Méthodes redéfinies : contains() et getCorners()
+
+La méthode surface() n'a pas besoin d'être redéfinie car elle ne change pas avec la rotation
+
+Exercice 4
+
+Point p = new Point(1,2);
+Rectangle r = new Rectangle(p, 2, 3);
+Rectangle t = new SlantedRectangle(p, 2, 3);
+SlantedRectangle s = new SlantedRectangle(p, 2, 3);
+
+System.out.println(r.surface()); // ✔ Rectangle.surface()
+r.rotate(2); // Ne compile pas (rotate() n'existe pas dans Rectangle)
+
+System.out.println(r.contains(p)); // ✔ Rectangle.contains()
+
+System.out.println(t.surface()); // ✔ Rectangle.surface()
+t.rotate(2); //  Ne compile pas (type déclaré Rectangle)
+
+System.out.println(t.contains(p)); // ✔ SlantedRectangle.contains() (appel dynamique)
+
+System.out.println(s.surface()); // ✔ Rectangle.surface()
+s.rotate(2); // ✔ SlantedRectangle.rotate()
+System.out.println(s.contains(p)); // ✔ SlantedRectangle.contains()
+
+Exercice 5
+
+La classe Dessin peut contenir des rectangles inclinés car elle travaille avec le type Rectangle
+
+Les méthodes fonctionnent toujours car :
+
+surface() : ne dépend pas de l'orientation
+
+hull() : utilise getCorners() qui est redéfini pour les rectangles inclinés
+
+contains() : n'est pas utilisée dans Dessin directement
+
+Exercice 6
+
+C'est une redéfinition (override) car Object.toString() existe déjà
+
+Il est nécessaire de la redéfinir dans SlantedRectangle pour inclure l'angle
+
+Exercice 8
+
+void f(A o) dans A
+void f(A o) dans A
+void f(A o) dans A
+void f(A o) dans B
+void f(A o) dans B
+void f(A o) dans B
+void f(A o) dans B
+void f(A o) dans B
+void f(A o) dans B
+
+Exercice 9
+
+C'est une surcharge  car la signature change (f(B) vs f(A))
+void f(A o) dans A
+void f(A o) dans A
+void f(A o) dans A
+void f(A o) dans B
+void f(A o) dans B
+void f(A o) dans B
+void f(A o) dans B
+void f(A o) dans B
+void f(B o) dans B <<------ modification
+
+Exercice 10
+
+C'est une surcharge dans A mais la fonction génère une erreur
+
+
+Exercice 11
+
+true
+true
+true
+false
+true
+true
+
+Exercice 12
+
+Doit être redéfinie dans SlantedRectangle pour tenir compte de l'angle
+
+Cas non couverts :
+
+Un SlantedRectangle contenant un Rectangle standard
+
+Un Rectangle contenant partiellement un SlantedRectangle
+
+
+Exercice 13
+
+sortie du programme
+
+C
+C
+C
+D
+D
+D
+
