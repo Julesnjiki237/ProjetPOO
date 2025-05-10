@@ -61,4 +61,35 @@ public class SlantedRectangle extends Rectangle {
 
         return new Point(newX, newY);
     }
+
+    @Override
+    public String toString() {
+        return String.format("SlantedRectangle[(%.2f,%.2f), w=%.2f, h=%.2f, angle=%.2f rad]",
+                bottomLeft.getX(), bottomLeft.getY(), width, height, angle);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) return false;
+        if (!(obj instanceof SlantedRectangle)) return false;
+        SlantedRectangle other = (SlantedRectangle) obj;
+        return Double.compare(angle, other.angle) == 0;
+    }
+
+    @Override
+    public boolean contains(Rectangle r) {
+        Point[] corners = r.getCorners();
+        for (Point p : corners) {
+            if (!this.contains(p)) return false;
+        }
+        return true;
+    }
+
+    public boolean contains(SlantedRectangle sr) {
+        Point[] corners = sr.getCorners();
+        for (Point p : corners) {
+            if (!this.contains(p)) return false;
+        }
+        return true;
+    }
 }

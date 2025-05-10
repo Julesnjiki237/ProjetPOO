@@ -124,9 +124,29 @@ public class Rectangle {
     }
 
     // Méthode toString pour le débogage
+
+
     @Override
     public String toString() {
-        return "Rectangle[(" + bottomLeft.getX() + "," + bottomLeft.getY() +
-                "), w=" + width + ", h=" + height + "]";
+        return String.format("Rectangle[(%.2f,%.2f), w=%.2f, h=%.2f]",
+                bottomLeft.getX(), bottomLeft.getY(), width, height);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Rectangle)) return false;
+        Rectangle other = (Rectangle) obj;
+        return bottomLeft.equals(other.bottomLeft) &&
+                Double.compare(width, other.width) == 0 &&
+                Double.compare(height, other.height) == 0;
+    }
+
+    public boolean contains(SlantedRectangle sr) {
+        Point[] corners = sr.getCorners();
+        for (Point p : corners) {
+            if (!this.contains(p)) return false;
+        }
+        return true;
     }
 }
